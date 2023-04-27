@@ -1,19 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { firestore } from "src/server/config";
-import {
-  addDoc,
-  collection,
-  onSnapshot,
-  doc,
-  updateDoc,
-  query,
-  where,
-  setDoc,
-  deleteDoc,
-  orderBy,
-  serverTimestamp,
-} from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 
 let sampleRef = collection(firestore, "users");
 
