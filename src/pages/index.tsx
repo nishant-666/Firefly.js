@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("/api/sample");
+      const res = await fetch("/api/sampleGET");
       const json = await res.json();
       console.log(json);
     };
