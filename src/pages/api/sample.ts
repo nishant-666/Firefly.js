@@ -1,41 +1,29 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { firestore } from "src/server/config";
-import { collection, onSnapshot } from "firebase/firestore";
+import { onSnapshot, collection } from "firebase/firestore";
 
-let sampleRef = collection(firestore, "users");
-
-interface User {
+interface Users {
   id: string;
-  name: string;
-  email: string;
-  imageLink: string;
-  userID: string;
+  sampleField: string;
 }
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<User[]>
-) {
-  onSnapshot(
-    sampleRef,
-    (response) => {
-      const users: User[] = [];
-      response.forEach((doc) => {
-        const data = doc.data();
-        users.push({
-          id: doc.id,
-          name: data.name,
-          email: data.email,
-          imageLink: data.imageLink,
-          userID: data.userID,
-        });
-      });
+let sampleCollection = collection(firestore, "sample");
 
-      res.status(200).json(users);
-    },
-    (error) => {
-      console.error(error);
-    }
-  );
+export default function sampleGETAPI(
+  req: NextApiRequest,
+  res: NextApiResponse<Users[]>
+) {
+  onSnapshot(sampleCollection, (response) => {
+    const users: Users[] = [];
+    response.forEach((doc) => {
+      const data = doc.data();
+      users.push({
+        id: doc.id,
+        sampleField: data.sampleField,
+      });
+    });
+
+    res.status(200).json(users);
+  });
 }
