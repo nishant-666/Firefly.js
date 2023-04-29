@@ -1,8 +1,7 @@
-import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
 import Input from "src/components/Input";
 
-const inter = Inter({ subsets: ["latin"] });
+import styles from "src/sass/Home.module.scss";
 
 export default function Home() {
   const [input, setInput] = useState({});
@@ -39,8 +38,9 @@ export default function Home() {
 
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-center p-24 ${inter.className}`}
+      className={`flex min-h-screen flex-col items-center justify-center p-24`}
     >
+      <h1 className={styles.heading}>Welcome to FIREFLY.JS!</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <Input
@@ -58,7 +58,7 @@ export default function Home() {
             onChange={handleInput}
           />
         </div>
-        <button className="btn" type="submit">
+        <button className="btn w-30 ml-2 mt-2" type="submit">
           Submit
         </button>
       </form>
