@@ -2,14 +2,18 @@ import "src/sass/globals.scss";
 
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
+import type { AppType } from "next/app";
+import { trpc } from "src/utils/trpc";
 
-export default function App({
+const App: AppType = ({
   Component,
   pageProps: { session, ...pageProps },
-}: AppProps) {
+}: AppProps) => {
   return (
     <SessionProvider session={session}>
       <Component {...pageProps} />
     </SessionProvider>
   );
-}
+};
+
+export default trpc.withTRPC(App);
