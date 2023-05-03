@@ -9,7 +9,7 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const postData = trpc.postSample.useMutation();
+  const postData = trpc.samplePOSTAPI.postSample.useMutation();
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("/api/sampleGET");
