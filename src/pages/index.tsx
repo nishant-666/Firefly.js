@@ -4,7 +4,7 @@ import { trpc } from "src/utils/trpc";
 
 export default function Component() {
   const { data: session } = useSession();
-  const result = trpc.getUser.useQuery();
+  const result = trpc.getSample.useQuery();
   console.log(result);
   if (session) {
     return (

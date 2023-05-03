@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import Input from "src/components/Input";
+import { trpc } from "src/utils/trpc";
 
 import styles from "src/sass/Home.module.scss";
 
-export default function Home() {
-  const [input, setInput] = useState({});
+export default function Login() {
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+  const postData = trpc.postSample.useMutation();
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("/api/sampleGET");
@@ -27,12 +32,10 @@ export default function Home() {
 
   const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await fetch("/api/samplePOST", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(input),
+
+    postData.mutate({
+      email: input.email,
+      password: input.password,
     });
   };
 
